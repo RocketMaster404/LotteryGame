@@ -6,6 +6,8 @@ namespace LottoApp
    {
 
       static string[] users = { "Anna", "Simon", "Antonio", "Erik" };
+      static int[] myLyckyNumbers = new int[BuyTickets()];
+      
 
       static int GetUserNumber()
       {
@@ -23,7 +25,10 @@ namespace LottoApp
       {
          int tickets = 0;
          int ticketNumbers;
-         
+         int count = 1;
+         bool endLoop = true;
+
+
          Console.WriteLine("Ange din användare: ");
          string userName = Console.ReadLine();
          Console.Write("Hur många lotter vill du köpa (max 5st): ");
@@ -32,13 +37,20 @@ namespace LottoApp
             Console.WriteLine("Du kan endast köpa 5 lotter");
          }
 
-         while(tickets > 0)
+         while(endLoop)
          {
+            
             Console.WriteLine("Ange ditt nummer du vill satsa på: ");
-            while (!int.TryParse(Console.ReadLine(), out ticketNumbers) && ticketNumbers >0 || ticketNumbers < 50)
+            while (!int.TryParse(Console.ReadLine(), out ticketNumbers) && ticketNumbers < 50)
             {
                Console.WriteLine("Du måste ange tal nellan 1 - 50");
             }
+            if (count == tickets)
+            {
+               endLoop = false;
+            }
+
+            count++;
             
          }
 
@@ -51,13 +63,14 @@ namespace LottoApp
 
       static void Menu()
       {
+         
          Console.WriteLine("1) Köp lotter\n2) Spela\n3) Avsluta");
          int choice = GetUserNumber();
 
          switch (choice)
          {
             case 1:
-               // Köp lotter
+               BuyTickets();
                break;
             case 2:
                // Spela
@@ -107,7 +120,9 @@ namespace LottoApp
         static int[] LotteryTickets = new int[5];
         static void Main(string[] args)
       {
-         Console.WriteLine("Welcome to the Lotto App!");           
+
+         Console.WriteLine("Welcome to the Lotto App!");       
+
       }
    }
 }
