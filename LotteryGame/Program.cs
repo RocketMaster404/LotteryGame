@@ -6,27 +6,16 @@ namespace LottoApp
    {
 
       static string[] users = { "Anna", "Simon", "Antonio", "Erik" };
-      static int[] myLyckyNumbers = new int[BuyTickets()];
+     
       
 
-      static int GetUserNumber()
-      {
-         int input = 0;
-         Console.WriteLine("Ange ditt val: ");
-         while (!int.TryParse(Console.ReadLine(), out input))
-         {
-            Console.WriteLine("Du måste ange heltal");
-         }
-         return input;
-
-      }
+      
 
       static int BuyTickets()
       {
          int tickets = 0;
          int ticketNumbers;
-         int count = 1;
-         bool endLoop = true;
+         
 
 
          Console.WriteLine("Ange din användare: ");
@@ -37,22 +26,19 @@ namespace LottoApp
             Console.WriteLine("Du kan endast köpa 5 lotter");
          }
 
-         while(endLoop)
-         {
+       
             
-            Console.WriteLine("Ange ditt nummer du vill satsa på: ");
-            while (!int.TryParse(Console.ReadLine(), out ticketNumbers) && ticketNumbers < 50)
-            {
-               Console.WriteLine("Du måste ange tal nellan 1 - 50");
-            }
-            if (count == tickets)
-            {
-               endLoop = false;
-            }
-
-            count++;
             
-         }
+                for (int i = 0; i < tickets; i++)
+                {
+                    Console.WriteLine("Ange ditt nummer du vill satsa på: ");
+                    while (!int.TryParse(Console.ReadLine(), out ticketNumbers) && ticketNumbers < 50)
+                    {
+                        Console.WriteLine("Du måste ange tal nellan 1 - 50");
+                    }
+                    LotteryTickets[i] = ticketNumbers;
+                }
+        
 
 
          return tickets;
@@ -61,40 +47,7 @@ namespace LottoApp
 
       }
 
-      static void Menu()
-      {
-         
-         Console.WriteLine("1) Köp lotter\n2) Spela\n3) Avsluta");
-         int choice = GetUserNumber();
-
-         switch (choice)
-         {
-            case 1:
-               BuyTickets();
-               break;
-            case 2:
-               // Spela
-               break;
-            case 3:
-               //Avsluta
-               break;
-            default:
-               Console.WriteLine("Ange en siffra mellan 1-3");
-               break;
-         }
-
-
-
-      }
-
-        static void TicketGenerator(int amount)
-        {
-            for (int i = 0; i < amount; i++)
-            {
-                Random rnd = new Random();
-                LotteryTickets[i] = rnd.Next(1, 51);   
-            }
-        }
+   
 
         static void GetWinningTickets(int amount) 
         {
@@ -110,6 +63,9 @@ namespace LottoApp
                 {
                     wins += 1;
                     Console.WriteLine($"Du vann {wins} gånger");
+                } else
+                {
+                    Console.WriteLine($"Fel förlora {ComputersNumbers[i]} {LotteryTickets[i]}");
                 }
                 
             }
@@ -118,11 +74,17 @@ namespace LottoApp
         static int wins = 0;
 
         static int[] LotteryTickets = new int[5];
+
+
         static void Main(string[] args)
-      {
+        {
 
-         Console.WriteLine("Welcome to the Lotto App!");       
+            Console.WriteLine("Welcome to the Lotto App!");
+            int amount = BuyTickets();
+            //TicketGenerator(amount);
+            GetWinningTickets(amount);
 
-      }
-   }
+
+        }
+    }
 }
