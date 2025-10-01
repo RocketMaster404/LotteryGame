@@ -63,8 +63,19 @@ namespace LottoApp
 
 
       }
-      static void Main(string[] args)
+
+        static void TicketGenerator(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Random rnd = new Random();
+                LotteryTickets[i] = rnd.Next(1, 51);
+            }
+        }
+        static int[] LotteryTickets = { };
+        static void Main(string[] args)
       {
+            TicketGenerator();
          Console.WriteLine("Welcome to the Lotto App!");
       }
    }
