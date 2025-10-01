@@ -19,9 +19,11 @@ namespace LottoApp
 
       }
 
-      static void BuyTickets()
+      static int BuyTickets()
       {
-         int tickets;
+         int tickets = 0;
+         int ticketNumbers;
+         
          Console.WriteLine("Ange din användare: ");
          string userName = Console.ReadLine();
          Console.Write("Hur många lotter vill du köpa (max 5st): ");
@@ -30,10 +32,18 @@ namespace LottoApp
             Console.WriteLine("Du kan endast köpa 5 lotter");
          }
 
+         while(tickets > 0)
+         {
+            Console.WriteLine("Ange ditt nummer du vill satsa på: ");
+            while (!int.TryParse(Console.ReadLine(), out ticketNumbers) && ticketNumbers >0 || ticketNumbers < 50)
+            {
+               Console.WriteLine("Du måste ange tal nellan 1 - 50");
+            }
+            
+         }
 
 
-
-
+         return tickets;
 
 
 
