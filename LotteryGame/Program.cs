@@ -72,8 +72,8 @@ namespace LottoApp
          for (int i = 0; i < ComputersNumbers.Length; i++)
          {
             Random rnd = new Random();
-            ComputersNumbers[i] = rnd.Next(1, 7);
-            Console.Write($"{ComputersNumbers[i]} ");
+            ComputersNumbers[i] = rnd.Next(1, 51);
+            Console.Write($"Vinnande nummer: {ComputersNumbers[i]} ");
 
          }
 
